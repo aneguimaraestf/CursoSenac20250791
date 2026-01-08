@@ -33,26 +33,49 @@ print(f"Total de Unidades Vendidas: {sum(venda['quantidade'] for venda in lista_
 
 #Maior e Menor Venda
 print("\n------- MAIOR E MENOR VENDA ------")
-maior_venda = max(lista_vendas, key=lambda x: x["quantidade"] * x["valor_unitario"])
-menor_venda = min(lista_vendas, key=lambda x: x["quantidade"] * x["valor_unitario"])
-print(f"Maior Venda: ID {maior_venda['id']} - R$ {maior_venda['quantidade'] * maior_venda['valor_unitario']:.2f}")
-print(f"Menor Venda: ID {menor_venda['id']} - R$ {menor_venda['quantidade'] * menor_venda['valor_unitario']:.2f}")  
+maior_venda = lista_vendas[0]["valor_unitario"] * lista_vendas[0]["quantidade"] 
+menor_venda = lista_vendas[0]["valor_unitario"] * lista_vendas[0]["quantidade"] 
+
+for venda in lista_vendas:
+    total_venda = venda["quantidade"] * venda["valor_unitario"]
+
+    if total_venda > maior_venda:
+        maior_venda = total_venda
+
+    if total_venda < menor_venda:
+        menor_venda = total_venda
+
+print(f"Maior Valor de Venda: R$ {maior_venda}")
+print(f"Menor Valor de Venda: R$ {menor_venda}")
 
 #Exibir o nome dos Vendedores
 print("\n------- LISTA DE VENDEDORES ------")
-vendedores = set()
+lista_vendedores = []
+print("Lista de Vendedores:")
 for venda in lista_vendas:
-    vendedores.add(venda["vendedor"])   
-for vendedor in vendedores:
-    print(f"- {vendedor}")
+    if venda["vendedor"] not in lista_vendedores:
+        lista_vendedores.append(venda["vendedor"])
+
+lista_vendedores.sort()
+for vendedor in lista_vendedores:
+    print(vendedor)
+
+print(f"Quantidade de Vendedores: {len(lista_vendedores)}")
 
 #Exibir o nome das Regiões
 print("\n------- LISTA DAS REGIÕES ------")
-regioes = set()
-for venda in lista_vendas:  
-    regioes.add(venda["regiao"])    
-for regiao in regioes:
-    print(f"- {regiao}")
+lista_regioes = []
+for venda in lista_vendas:
+    if venda["regiao"] not in lista_regioes:
+        lista_regioes.append(venda["regiao"])
+
+lista_regioes.sort()
+
+for contador, regiao in enumerate(lista_regioes):
+    print(f"{contador+1}. {regiao}")
+    
+
+print(f"Quantidade de Regiões: {len(lista_regioes)}")
 
 
 # 2. Total das vendas por categoria
@@ -106,3 +129,5 @@ print(f"Quantidade de vendas que superaram a meta de R$ {meta_venda:.2f}= {len(v
 for venda in vendas_que_superaram_meta:
     total_venda = venda["quantidade"] * venda["valor_unitario"]
     print(f"- ID {venda['id']}: R$ {total_venda:.2f}")
+
+    #teste
