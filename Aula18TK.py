@@ -130,4 +130,3 @@ for venda in vendas_que_superaram_meta:
     total_venda = venda["quantidade"] * venda["valor_unitario"]
     print(f"- ID {venda['id']}: R$ {total_venda:.2f}")
 
-    #teste
