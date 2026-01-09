@@ -1,0 +1,144 @@
+{
+    "vendas": [
+        {
+        "vendedor": "Ana",
+        "produto": "notebook",
+        "valor": 2800,
+        "meta_atingida": true,
+        "quantidade": 1
+        },
+        {
+        "vendedor": "Carlos",
+        "produto": "mouse",
+        "valor": 120,
+        "meta_atingida": false,
+        "quantidade": 3
+        },
+        {
+        "vendedor": "Beatriz",
+        "produto": "teclado",
+        "valor": 250,
+        "meta_atingida": true,
+        "quantidade": 2
+        },
+        {
+        "vendedor": "Ana",
+        "produto": "monitor",
+        "valor": 950,
+        "meta_atingida": true,
+        "quantidade": 1
+        },
+        {
+        "vendedor": "Carlos",
+        "produto": "notebook",
+        "valor": 2300,
+        "meta_atingida": false,
+        "quantidade": 1
+        },
+        {
+        "vendedor": "Beatriz",
+        "produto": "mouse",
+        "valor": 90,
+        "meta_atingida": false,
+        "quantidade": 4
+        },
+        {
+        "vendedor": "Ana",
+        "produto": "teclado",
+        "valor": 180,
+        "meta_atingida": true,
+        "quantidade": 3
+        },
+        {
+        "vendedor": "Carlos",
+        "produto": "monitor",
+        "valor": 1100,
+        "meta_atingida": true,
+        "quantidade": 2
+        },
+        {
+        "vendedor": "Beatriz",
+        "produto": "notebook",
+        "valor": 3000,
+        "meta_atingida": true,
+        "quantidade": 1
+        },
+        {
+        "vendedor": "Ana",
+        "produto": "mouse",
+        "valor": 75,
+        "meta_atingida": false,
+        "quantidade": 5
+        },
+        {
+        "vendedor": "Carlos",
+        "produto": "teclado",
+        "valor": 220,
+        "meta_atingida": false,
+        "quantidade": 2
+        },
+        {
+        "vendedor": "Beatriz",
+        "produto": "monitor",
+        "valor": 1300,
+        "meta_atingida": true,
+        "quantidade": 1
+        },
+        {
+        "vendedor": "Ana",
+        "produto": "notebook",
+        "valor": 2600,
+        "meta_atingida": true,
+        "quantidade": 2
+        },
+        {
+        "vendedor": "Carlos",
+        "produto": "mouse",
+        "valor": 150,
+        "meta_atingida": true,
+        "quantidade": 3
+        },
+        {
+        "vendedor": "Beatriz",
+        "produto": "teclado",
+        "valor": 200,
+        "meta_atingida": false,
+        "quantidade": 1
+        },
+        {
+        "vendedor": "Ana",
+        "produto": "monitor",
+        "valor": 850,
+        "meta_atingida": false,
+        "quantidade": 2
+        },
+        {
+        "vendedor": "Carlos",
+        "produto": "notebook",
+        "valor": 2900,
+        "meta_atingida": true,
+        "quantidade": 1
+        },
+        {
+        "vendedor": "Beatriz",
+        "produto": "mouse",
+        "valor": 60,
+        "meta_atingida": false,
+        "quantidade": 2
+        },
+        {
+        "vendedor": "Ana",
+        "produto": "teclado",
+        "valor": 300,
+        "meta_atingida": true,
+        "quantidade": 4
+        },
+        {
+        "vendedor": "Carlos",
+        "produto": "monitor",
+        "valor": 1400,
+        "meta_atingida": true,
+        "quantidade": 1
+        }
+    ]
+}
