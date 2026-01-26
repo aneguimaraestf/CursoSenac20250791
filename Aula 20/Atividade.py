@@ -15,7 +15,7 @@ print(f"📊 Total de registros: {len(lista_vendas)}")
 
 
 
-print("\n📋 LISTA COMPLETA DOS DADOS:\n")
+print("\n📋 LISTA COMPLETA DOS DADOS:")
 
 print(
     f"{'Vendedor':<15} "
