@@ -22,3 +22,15 @@ CREATE TABLE "Livros"(
     autores_id integer,
     CONSTRAINT fk_livros_autores foreign KEY (autores_id) references "Autores" (autores_id)
 );
+
+
+
+CREATE TABLE "Emprestimo"(
+    emp_id integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    id_livro integer NOT NULL,
+    id_membro integer NOT NULL,
+    emp_data date NOT NULL default current_date,
+    emp_devolucao date,
+    CONSTRAINT fk_emp_livro foreign KEY (id_livro) references "Livro" (livros_id),
+    CONSTRAINT fk_emp_membro foreign KEY (id_membro) references "Membro" (membro_id)
+);
