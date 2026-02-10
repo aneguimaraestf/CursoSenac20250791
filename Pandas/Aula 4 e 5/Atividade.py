@@ -54,14 +54,9 @@ dados['Nome'] = dados['Nome'].str.title()
 #print(dados.sample(10))
 
 
-#Missão 3: Correção das Idades
-#1. Substitua os valores vazios e "N/A" por NaN (valores ausentes)
-def corrigir_idade(valor):
-    try:
-        idade = int(valor)
-        return idade
-    except:
-        idade = pd.NA
+# Missão 3 - Padronizar idade
+
+
 dados["Idade"] = dados["Idade"].replace(["", " ", "N/A"], pd.NA)
 
 dados["Idade"] = pd.to_numeric(dados["Idade"], errors="coerce")
@@ -81,5 +76,72 @@ dados["Idade"] = dados["Idade"].clip(lower=0, upper=120)
 # print(dados[(dados["Idade"] < 0) | (dados["Idade"] > 120)])
 
 
-# print(mediana_idade)
-print(dados["Sexo"].value_counts())
+# Missão 4 - Padronizar Gênero
+dict_genero = {
+    "feminino": "f",
+    "masculino": "m",
+    "": "Não Informado",
+    " ":"Não Informado",
+    "N/A":"Não Informado"
+}
+
+dados["Sexo"] = dados["Sexo"].astype("str").str.strip().str.lower().replace(dict_genero).fillna("Não Informado").str.upper()
+
+
+# Missão 5 - Padronizar Data
+
+# Forma padrão, porém não suficiente para todas as datas
+# dados["Data_Consulta"] = pd.to_datetime(dados["Data_Consulta"], errors="coerce", dayfirst=True)
+
+# def converter_data(data):
+
+#     try:
+#         return pd.to_datetime(data, format="%d/%m/%Y")
+#     except:
+#         try:
+#             return pd.to_datetime(data, format="%Y-%m-%d")
+#         except:
+#             return pd.NaT
+
+
+
+# dados["Data_Consulta"] = dados["Data_Consulta"].str.strip().apply(converter_data)
+
+# dados["Dia da Semana"] = dados["Data_Consulta"].dt.day_name()
+
+# print(dados.sample(20).to_string())
+
+
+# Missão 6 - Padronizar Especialidades
+
+dados["Especialidade"] = dados["Especialidade"].astype("str").str.strip().str.upper().fillna("NÃO INFORMADO").replace([""," "], "NÃO INFORMADO").str.replace("_"," ")
+
+
+
+# Missão 7 - Padronizar Retorno
+
+dict_retorno = {
+    "s": "Sim",
+    "n": "Não",
+    "si": "Sim",
+    "na": "Não",
+    "nã": "Não",
+    "": "Não",
+    " ": "Não"
+}
+
+dados["Retorno"] = dados["Retorno"].astype("str").str.strip().str.lower().replace(dict_retorno).fillna("Não").str.title()
+
+dados.loc[(dados["Retorno"] != "Não") & (dados["Retorno"] != "Sim"), "Retorno"] = "Não"
+
+print(dados["Retorno"].value_counts())
+
+
+# Missão 8 - Remoção de duplicatas
+
+# Consultar para verificar se a remoção de duplicados está selecionando linhas corretas
+# print(dados[(dados.duplicated(subset=["Nome", "Data_Consulta", "Especialidade"] ,keep=False)) & (dados["Nome"] == "Juliana Santos")])
+
+dados = dados.drop_duplicates(subset=["Nome", "Data_Consulta", "Especialidade"]).reset_index(drop=True)
+
+print(dados.info())
