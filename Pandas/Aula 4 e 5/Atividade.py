@@ -145,3 +145,4 @@ print(dados["Retorno"].value_counts())
 dados = dados.drop_duplicates(subset=["Nome", "Data_Consulta", "Especialidade"]).reset_index(drop=True)
 
 print(dados.info())
+#Atualizado em 10/02/2026.
