@@ -8,6 +8,8 @@ import matplotlib.pyplot as plt
 # Deve conter 3 métricas (Faturamento Total, Custo Total, Lucro Total ou outros)
 # Deve conter 2 gráficos de análise (Faturamento pelo tempo), (Lucro por Categoria)
 
+#st.title(quant_prod)
+
 df = pd.read_csv("vendas_5000_linhas_tratado.csv")
 
 st.set_page_config(page_title="Dashboard Vendas", page_icon="📊")
@@ -33,24 +35,38 @@ faturamento_bruto_total = df["total_venda"].round(2).sum()
 
 st.metric("Faturamento Bruto", f"R$ {faturamento_bruto_total:,.2f} reais")
 
+lucro_total = df["lucro_venda"].sum()
 
-#Produto mais Vendido
-# Produto mais vendido (dentro da categoria filtrada)
+st.metric("Lucro Total", f"R$ {lucro_total:,.2f} reais")
 
-if not df.empty:
-    produto_mais_vendido = (
-        df.groupby("produto")["quantidade"]
-        .sum()
-        .sort_values(ascending=False)
-        .reset_index()
-    )
+margem_lucro = (lucro_total/faturamento_bruto_total)*100
 
-    nome_produto = produto_mais_vendido.iloc[0]["produto"]
-    qtd_produto = produto_mais_vendido.iloc[0]["quantidade"]
+st.metric("Margem de Lucro", f"{margem_lucro:.2f}%")
 
-    st.metric("Produto Mais Vendido", f"{nome_produto} ({qtd_produto} un.)")
-else:
-    st.warning("Nenhum dado disponível para essa categoria.")
-
-#st.title(quant_prod)
 st.dataframe(df)
+
+faturamento_por_regiao_df = df.groupby("regiao").agg(
+    faturamento_total = ("total_venda", "sum")
+).reset_index()
+
+fig, axes = plt.subplots(2, 1)
+
+axes[0].bar(faturamento_por_regiao_df["regiao"], faturamento_por_regiao_df["faturamento_total"])
+axes[0].set_title("Faturamento por Tempo")
+axes[0].set_xlabel("Datas")
+axes[0].set_ylabel("Totais de Venda")
+axes[0].grid(True, axis="y")
+
+axes[1].bar(faturamento_por_regiao_df["regiao"], faturamento_por_regiao_df["faturamento_total"])
+axes[1].set_title("Faturamento por Tempo")
+axes[1].set_xlabel("Datas")
+axes[1].set_ylabel("Totais de Venda")
+axes[1].grid(True)
+
+
+fig.tight_layout()
+
+st.pyplot(fig)
+
+st.bar_chart(faturamento_por_regiao_df, x="regiao", y="faturamento_total")
+
